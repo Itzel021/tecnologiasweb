@@ -1,0 +1,1 @@
+Este es un archivo de ejemplo html dentro de la carpeta estandares.

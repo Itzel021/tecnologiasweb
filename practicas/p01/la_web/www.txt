@@ -1,0 +1,1 @@
+Este es un archivo de ejemplo www dentro de la carpeta la_web.
