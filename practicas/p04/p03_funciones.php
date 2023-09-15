@@ -35,4 +35,20 @@ function impar_par_impar(){
         }
         echo $iteraciones * 3 . " números obtenidos en " . $iteraciones . " iteraciones";
 }
+function multiplo_entero() {
+    if (isset($_GET['multiplo'])) {
+        $num = $_GET['multiplo'];
+        $aleatorio = rand(1, 100);
+        
+        while ($aleatorio % $num != 0) {
+            $aleatorio = rand(1, 100);
+            break;
+        }
+        echo "<b>WHILE -></b>El primer número aleatorio múltiplo de $num es: $aleatorio <br>";
+        do{
+            $aleatorio = rand(1, 100);
+        } while ($aleatorio % $num != 0);
+        echo"<b>DO-WHILE -></b>El primer número aleatorio múltiplo de $num es: $aleatorio";
+    }
+}
 ?>
