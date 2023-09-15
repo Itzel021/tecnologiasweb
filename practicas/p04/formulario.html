@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Solicitud</title>
+</head>
+
+<body>
+    <p>
+        <strong>IMPORTANTE:</strong>Los siguientes ejercicios deben implementarse
+        en formularios simples de HTML5
+        <br />
+        (solicitud) y como respuesta devolver un XHTML generado por PHP.
+    </p>
+    <h2>Ejercicio 5</h2>
+    <p>
+        Usar las variables $edad y $sexo en una instrucción if para identificar
+        una persona de <br />
+        sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un
+        mensaje de <br />
+        bienvenida apropiado. Por ejemplo:
+    </p>
+    <p class="sangria">Bienvenida, usted está en el rango de edad permitido.</p>
+    <p>En caso contrario, deberá devolverse otro mensaje indicando el error.</p>
+    <ul>
+        <li>
+            Los valores para $edad y $sexo se deben obtener por medio de un
+            formulario en HTML.
+        </li>
+        <li>
+            Utilizar el la Variable Superglobal $_POST (revisar documentación).
+        </li>
+    </ul>
+    <div class="m-2 text-center p-1" style="width: 50%;">
+        <strong>FORMULARIO</strong>
+        <p>Ingresa tus datos.</p>
+        <form action="formulario.php" method="post">
+            <label for="edad">Edad:</label>
+            <input type="int" id="edad" name="edad" placeholder="18 - 35 años" /><br><br>
+            <label for="sexo">Sexo:</label>
+            <input type="text" id="sexo" name="sexo" placeholder="Femenino / Masculino" /><br><br>
+            <input type="submit" value="ENVIAR">
+        </form>
+    </div>
+</body>
+
+</html>
