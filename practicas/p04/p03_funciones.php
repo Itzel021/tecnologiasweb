@@ -51,4 +51,19 @@ function multiplo_entero() {
         echo"<b>DO-WHILE -></b>El primer número aleatorio múltiplo de $num es: $aleatorio";
     }
 }
+function ascii(){
+    $letras = [];
+    $codigo = 97;
+    for ($codigo; $codigo <= 122; $codigo++) {
+        $letra = chr($codigo);
+        $letras[$codigo] = $letra;
+    }
+    echo "<table border = '1'>";
+    echo "<tr><th>Código ASCII</th><th>Letra</th></tr>";
+    foreach ($letras as $codigo => $letra) {
+        echo "<tr><td>$codigo</td><td>$letra</td></tr>";
+    }
+    echo "</table>";
+    
+}
 ?>

@@ -29,7 +29,7 @@
         <?php
         multiplo();
         ?>
-    <h2>Ejercicio 2</h2>
+        <h2>Ejercicio 2</h2>
         <p>2. Crea un programa para la generación repetitiva de 3 números aleatorios hasta obtener una
             secuencia<br> compuesta <b class="impar">impar</b>, <b class="par">par</b>, <b class="impar">impar</b></p>
         <p>Por ejemplo:</p>
@@ -46,7 +46,7 @@
         impar_par_impar();
         ?>
         <h2>Ejercicio 3</h2>
-        <p>3. Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente,
+        <p>3. Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente,<br>
             pero que además sea múltiplo de un número dado.</p>
         <ul>
             <li>Crear una variante de este script utilizando el ciclo do-while.</li>
@@ -55,6 +55,21 @@
         <?php
         $resultado = multiplo_entero();
         echo $resultado;
+        ?>
+        <h2>Ejercicio 4</h2>
+        <p>4. Crear un arreglo cuyos índices van de 97 a 122 y cuyos valores son las letras de la ‘a’<br>
+            a la ‘z’. Usa la función chr(n) que devuelve el caracter cuyo código ASCII es n para poner <br>
+            el valor en cada índice. Es decir:</p>
+        <p>[97] => a</p>
+        <p>[98] => b</p>
+        <p>[99] => c</p>
+        <p>[122] => z</p>
+        <ul>
+            <li>Crea el arreglo con un ciclo for</li>
+            <li>Lee el arreglo y crea una tabla en XHTML con echo y un ciclo foreach</li>
+        </ul>
+        <?php
+        ascii();
         ?>
 </body>
 
