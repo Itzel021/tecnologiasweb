@@ -21,6 +21,7 @@ $precio = $_POST["precio"];
 $detalles = $_POST["detalles"];
 $unidades = $_POST["unidades"];
 $imagen   = $_POST["imagen"];
+$eliminado = 0;
 
 /** SE CREA EL OBJETO DE CONEXION */
 @$link = new mysqli('localhost', 'root', 'itzel.123', 'marketzone');
@@ -35,13 +36,13 @@ if (empty($nombre) || empty($marca) || empty($modelo) || empty($precio) || empty
     echo '<p>Tienes campos vacíos.</p>';
 } elseif ($precio < 0){
     echo '<p>El precio no es válido. Ejemplo de formato correcto: 0.00</p>';
-}elseif(!preg_match('/^\d+$/', $unidades)){
+}elseif($unidades < 0){
     echo '<p>Unidades no válidas. Deben ser números enteros.</p>';
 }elseif(!preg_match('/^img\/[a-zA-Z0-9\/]+\.(jpg|png)$/', $imagen)){
     echo '<p>Formato de imagen incorrecto, el formato debe comenzar con <b>img/</b>.<br> Ejemplo de formato correcto: img/imagen.png</p>';
 }else {
     /** Crear una tabla que no devuelve un conjunto de resultados */
-$sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
+$sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', {$eliminado})";
 if ( $link->query($sql) ) 
 {
         echo '<div>';
