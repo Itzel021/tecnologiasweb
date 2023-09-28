@@ -33,7 +33,7 @@ if ($link->connect_errno) {
 // Validación de campos
 if (empty($nombre) || empty($marca) || empty($modelo) || empty($precio) || empty($detalles) || empty($unidades) || empty($imagen)) {
     echo '<p>Tienes campos vacíos.</p>';
-} elseif (!is_numeric($precio)){
+} elseif ($precio < 0){
     echo '<p>El precio no es válido. Ejemplo de formato correcto: 0.00</p>';
 }elseif(!preg_match('/^\d+$/', $unidades)){
     echo '<p>Unidades no válidas. Deben ser números enteros.</p>';
