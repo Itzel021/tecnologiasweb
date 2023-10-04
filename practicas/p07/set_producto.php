@@ -6,6 +6,12 @@ $precio = $_POST['precio'];
 $detalles = $_POST['detalles'];
 $unidades = $_POST['unidades'];
 $imagen   = $_POST['imagen'];
+$eliminado = 0;
+
+// Verificar si el campo de imagen está vacío
+if (empty($imagen)) {
+    $imagen = 'img/imagen.png'; // Establecer el valor predeterminado
+}
 
 /** SE CREA EL OBJETO DE CONEXION */
 @$link = new mysqli('localhost', 'root', 'itzel.123', 'tienda');	
@@ -18,7 +24,7 @@ if ($link->connect_errno)
 }
 
 /** Crear una tabla que no devuelve un conjunto de resultados */
-$sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
+$sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}',{$eliminado})";
 if ( $link->query($sql) ) 
 {
     echo 'ID: '.$link->insert_id.' Producto insertado correctamente';

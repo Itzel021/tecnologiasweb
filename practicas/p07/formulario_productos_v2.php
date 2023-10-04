@@ -20,15 +20,17 @@
 <body>
     <div id="contenedor" class="container-fluid p-3">
         <h1>Formulario Productos</h1>
-        <p>Ingresa la información de tu producto:</p>
-        <form action="http://localhost/tecnologiasweb/practicas/p07/set_producto.php" method="post" id="form"
-            name="form_productos" onsubmit="return validarDatos()">
-
+        <p>Actualiza la información de tu producto:</p>
+        <form method="post" id="form_productos">
+            <label for="id">ID (solo lectura):</label><br>
+            <input type="text" name="id" readonly
+             value="<?= !empty($_POST['id'])?$_POST['id']:$_GET['id'] ?>"><br>
             <label for="nombre">Nombre:</label><br>
-            <input type="text" name="nombre" maxlength="100"><br>
+            <input type="text" name="nombre" maxlength="100"
+             value="<?= !empty($_POST['nombre'])?$_POST['nombre']:$_GET['nombre'] ?>"><br>
             <label for="marca">Marca:</label><br>
-            <select name="marca" form="form">
-                <option value="none" selected>---</option>
+            <select name="marca" form="form_productos">
+                <option value="<?= !empty($_POST['marca']) ? $_POST['marca'] : '---' ?>">---</option>
                 <option value="Apple">Apple</option>
                 <option value="Samsung">Samsung</option>
                 <option value="Xiaomi">Xiaomi</option>
@@ -41,18 +43,23 @@
                 <option value="Redmi">Redmi</option>
             </select><br>
             <label for="modelo">Modelo:</label><br>
-            <input type="text" name="modelo" maxlength="25"><br>
+            <input type="text" name="modelo" maxlength="25"
+            value="<?= !empty($_POST['modelo'])?$_POST['modelo']:$_GET['modelo'] ?>"><br>
             <label for="precio">Precio:</label><br>
-            <input type="text" name="precio" placeholder="00.00"><br>
+            <input type="text" name="precio" placeholder="00.00"
+            value="<?= !empty($_POST['precio'])?$_POST['precio']:$_GET['precio'] ?>"><br>
             <label for="detalles">Detalles:</label><br>
-            <textarea rows="3" name="detalles" maxlength="250" placeholder="No más a 250 caracteres."></textarea><br>
+            <textarea rows="3" name="detalles" maxlength="250" placeholder="No más a 250 caracteres.">
+                <?php echo !empty($_POST['detalles']) ? $_POST['detalles'] : $_GET['detalles']; ?>
+            </textarea><br>
             <label for="unidades">Unidades:</label><br>
-            <input type="text" name="unidades"><br>
+            <input type="text" name="unidades"
+            value="<?= !empty($_POST['unidades'])?$_POST['unidades']:$_GET['unidades'] ?>"><br>
             <label for="img">Imagen:</label><br>
-            <input type="text" name="imagen" placeholder="img/imagen.png" id="imagen">
+            <input type="text" name="imagen" placeholder="img/imagen.png"
+            value="<?= !empty($_POST['imagen'])?$_POST['imagen']:$_GET['imagen'] ?>">
             <br><br>
-            <button type="submit">Enviar</button>
-            <button type = "reset">Restablecer</button>
+            <button type="button" onclick="return validarDatos();">Enviar</button>
             <div id="mensaje" style="display: none;"  class="w3-panel w3-pale-red w3-border"></div>
         </form>
     </div>
@@ -61,13 +68,13 @@
         //Validación con JavaScript
         function validarDatos() {
 
-            var nombre = document.forms['form_productos']['nombre'].value;
-            var marca = document.forms['form_productos']['marca'].value;
-            var modelo = document.forms['form_productos']['modelo'].value;
-            var precio = document.forms['form_productos']['precio'].value;
-            var detalles = document.forms['form_productos']['detalles'].value;
-            var unidades = document.forms['form_productos']['unidades'].value;
-            var imagen = document.forms['form_productos']['imagen'].value;
+            var nombre = document.forms['form_productos']['nombre'].value.trim();
+            var marca = document.forms['form_productos']['marca'].value.trim();
+            var modelo = document.forms['form_productos']['modelo'].value.trim();
+            var precio = document.forms['form_productos']['precio'].value.trim();
+            var detalles = document.forms['form_productos']['detalles'].value.trim();
+            var unidades = document.forms['form_productos']['unidades'].value.trim();
+            var imagen = document.forms['form_productos']['imagen'].value.trim();
 
             //Mostrar los errores
             var mensaje = document.getElementById('mensaje');
@@ -114,7 +121,6 @@
             //Todos los campos son válidos.
             return true;
         }
-
     </script>
 </body>
 
