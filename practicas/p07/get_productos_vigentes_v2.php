@@ -56,14 +56,7 @@ else
         // se obtienen los datos de la fila en forma de arreglo
         var data = document.getElementById(rowId).querySelectorAll(".row-data");
 
-        var texto = data[7].innerHTML;
-
-        var texto2 = texto.replace('<img src="', '')
-        var texto3 = texto2.replace('" width="200px"', '')
-        var texto4 = texto3.replace('height="200px"', '')
-        var texto5 = texto4.replace('>', '')
-        var img = texto5.replace('>', '')
-        /**
+        /*
         querySelectorAll() devuelve una lista de elementos (NodeList) que 
         coinciden con el grupo de selectores CSS indicados.
         (ver: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)
@@ -79,7 +72,7 @@ else
         var precio = data[4].innerHTML;
         var unidades = data[5].innerHTML;
         var detalles = data[6].innerHTML;
-        var imagen = img.replace('http://localhost/tecnologiasweb/practicas/p07/', '');
+        var imagen = data[7].firstChild.getAttribute('src');
 
         alert("Seras redirigido a un formulario de edición.");
         send2form(id, nombre, marca, modelo, precio, unidades, detalles, imagen);
