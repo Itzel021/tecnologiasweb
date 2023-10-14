@@ -5,7 +5,7 @@ var baseJSON = {
     "modelo": "XX-000",
     "marca": "NA",
     "detalles": "NA",
-    "imagen": "img/default.png"
+    "imagen": "img/imagen.png"
   };
 
 // FUNCIÓN CALLBACK DE BOTÓN "Buscar"
@@ -73,8 +73,55 @@ function agregarProducto(e) {
     var productoJsonString = document.getElementById('description').value;
     // SE CONVIERTE EL JSON DE STRING A OBJETO
     var finalJSON = JSON.parse(productoJsonString);
+
     // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
     finalJSON['nombre'] = document.getElementById('name').value;
+
+    //VALIDACION
+    // Expresión regular para validar números enteros o decimales
+    var regex = /^[0-9]+(\.[0-9]+)?$/;
+     //Mostrar los errores
+     var mensaje = document.getElementById('mensaje');
+     //Crear un arreglo de todos los errores
+     var errores = [];
+    //Todos los datos estan bien
+    var correcto = true;
+    //a. El nombre debe ser requerido y tener 100 caracteres o menos.
+    if (finalJSON['nombre'] == "" || finalJSON['nombre'].length > 100 ) {
+        errores.push("Nombre vacío o excede los 100 caracteres.");
+    }
+    // b. La marca debe ser requerida y seleccionarse de una lista de opciones.
+    if (finalJSON['marca'] == "") {
+        errores.push("No has proporcionado ninguna marca.");
+    }
+    //c. El modelo debe ser requerido, texto alfanumérico y tener 25 caracteres o menos.
+    if (finalJSON['modelo'] == "" || !/^[a-zA-Z0-9\s]*$/.test(finalJSON['modelo']) || finalJSON['modelo'].length > 25) {
+        errores.push("Modelo vacío, no es texto alfanumérico o excede los 25 caracteres.");
+    }
+    //d. El precio debe ser requerido y debe ser mayor a 99.99
+    if (finalJSON['precio'] == "" || !regex.test(finalJSON['precio']) || finalJSON['precio'] < 99.99) {
+        errores.push("Precio no válido, debe ser mayor a 99.99");
+    }
+    //e. Los detalles deben ser opcionales y, de usarse, deben tener 250 caracteres o menos.
+    if (finalJSON['detalles'].lenght > 250) {
+        errores.push("Los detalles exceden los 250 caracteres.");
+    }
+    //f. Las unidades deben ser requeridas y el número registrado debe ser mayor o igual a 0.
+    if (finalJSON['unidades'] == "" || parseInt(finalJSON['unidades']) < 0 || !Number.isInteger(parseInt(finalJSON['unidades']))) {
+        errores.push("Unidades no válidas.");
+    }
+    /*g. La ruta de la imagen debe ser opcional, pero en caso de no registrarse se debe usar la
+    ruta de una imagen por defecto (ver ejemplo):*/
+    if (finalJSON['imagen'] == "") {
+        finalJSON['imagen'].value = "img/imagen.png";
+    }
+    // Si hay errores, mostrarlos todos.
+    if (errores.length > 0) {
+        mensaje.style.display = "block";
+        mensaje.innerHTML = "<h4>Errores en el formulario:</h4>" + errores.join("<br>");
+       //return false;
+       correcto = false;
+       }
     // SE OBTIENE EL STRING DEL JSON FINAL
     productoJsonString = JSON.stringify(finalJSON,null,2);
 
@@ -85,10 +132,15 @@ function agregarProducto(e) {
     client.onreadystatechange = function () {
         // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
         if (client.readyState == 4 && client.status == 200) {
-            console.log(client.responseText);
+            mensaje.style.display = "none";
+            console.log(client.responseText);//MOSTRAR EN CONSOLA
+            window.alert(client.responseText);//MOSTRAR CON UN ALERT
         }
     };
-    client.send(productoJsonString);
+    if(correcto == true){
+        mensaje.style.display = "none";
+        client.send(productoJsonString);
+    }
 }
 
 
