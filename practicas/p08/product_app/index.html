@@ -12,8 +12,9 @@
       
         <ul></ul>
         <form>
-          <input name="search" id="search" type="search" placeholder="ID">
-          <button type="submit" onclick="buscarID(event)">Buscar</button>
+          <label for="search">Busca por nombre, marca o detalles del producto:</label> <br>
+          <input name="search" id="search" type="search" placeholder="escribe...">
+          <button type="submit" onclick="buscar(event)">Buscar</button>
         </form>
     </nav>
 
@@ -21,6 +22,7 @@
       <div>
         <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
         <form id="task-form">
+          <br>
           <div>
             <input type="text" id="name" placeholder="Nombre de producto">
           </div>
