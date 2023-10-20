@@ -17,8 +17,8 @@ function init() {
     document.getElementById("description").value = JsonString;
 }
 $(document).ready(function () {
-    
-    listarProductos();
+    $('#product-result').hide();//Ocultar el product-result
+    listarProductos();//Cargar todos los productos existentes
 
     //Funcion para listar los productos existentes
     function listarProductos() {
@@ -47,4 +47,48 @@ $(document).ready(function () {
             }
         });
     }
+    
+    //Funcion para buscar productos
+    $('#search').keyup(function (e) {
+        if ($('#search').val()) {
+            let search = $('#search').val();
+
+            $.ajax({
+                url: './backend/product-search.php',
+                type: 'GET',
+                data: { search },
+                success: function (response) {
+                    let productos = JSON.parse(response);
+                    let template = '';
+                    let template_table = '';
+
+                    productos.forEach(producto => {
+                        template += `<li>
+                            ${producto.nombre}
+                        </li>`
+                    });
+
+                    $('#container').html(template);
+                    $('#product-result').show();
+
+                    productos.forEach(producto => {
+                        template_table += `
+                            <tr productId="${producto.id}">
+                                <td>${producto.id}</td>
+                                <td>${producto.nombre}</td>
+                                <td>
+                                    <li>Precio: $${producto.precio}</li>
+                                    <li>Marca: ${producto.marca}</li>
+                                    <li>Modelo: ${producto.modelo}</li>
+                                    <li>Unidades: ${producto.unidades}</li>
+                                    <li>Detalles: ${producto.detalles}</li>
+                                </td>
+                            </tr>
+                        `
+                    });
+                    $('#products').html(template_table);
+                }
+            });
+        }
+    });
 });
