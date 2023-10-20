@@ -30,7 +30,7 @@ $(document).ready(function () {
                 let template = '';
                 productos.forEach(producto => {
                     template += `
-                <tr>
+                <tr productId="${producto.id}">
                     <td>${producto.id}</td>
                     <td>${producto.nombre}</td>
                     <td>
@@ -39,6 +39,9 @@ $(document).ready(function () {
                     <li>Modelo: ${producto.modelo}</li>
                     <li>Unidades: ${producto.unidades}</li>
                     <li>Detalles: ${producto.detalles}</li>
+                    </td>
+                    <td>
+                    <button class="product-delete btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
                 `
@@ -83,6 +86,9 @@ $(document).ready(function () {
                                     <li>Unidades: ${producto.unidades}</li>
                                     <li>Detalles: ${producto.detalles}</li>
                                 </td>
+                                <td>
+                                <button class="product-delete btn btn-danger">Eliminar</button>
+                                </td>
                             </tr>
                         `
                     });
@@ -98,11 +104,11 @@ $(document).ready(function () {
         let description = $('#description').val();
         let datos = JSON.parse(description);//convertirla en un objeto JavaScript.
         datos.nombre = $('#name').val();
-        
+
         const postDatos = {
-            nombre: datos.nombre, 
-            precio: datos.precio, 
-            unidades: datos.unidades, 
+            nombre: datos.nombre,
+            precio: datos.precio,
+            unidades: datos.unidades,
             modelo: datos.modelo,
             marca: datos.marca,
             detalles: datos.detalles,
@@ -122,13 +128,28 @@ $(document).ready(function () {
                                 <li>status: ${respons.status}</li>
                                 <li>message: ${respons.message}</li>
                             `;
-                   $('#container').html(template_bar);
-                   $('#product-result').show();
-                   listarProductos();
+                $('#container').html(template_bar);
+                $('#product-result').show();
+                listarProductos();
             });
         }
 
 
+    });
+
+    //Funcion para eliminar producto
+    $(document).on('click', '.product-delete', function () {
+        if (confirm('¿Quieres eliminar el producto?')) {
+            const element = $(this)[0].parentElement.parentElement;
+            const id = $(element).attr('productId');
+            $.post('./backend/product-delete.php', { id }, function (response) {
+                let respuesta = JSON.parse(response);
+                //console.log(respuesta);
+                listarProductos();
+                let mensaje = respuesta.message;
+                alert(mensaje);
+            });
+        }
     });
 
     //Funcion para validar las entradas del formulario
@@ -136,20 +157,20 @@ $(document).ready(function () {
         const errors = [];
         const regex = /^[0-9]+(\.[0-9]+)?$/;
 
-         //a. El nombre debe ser requerido y tener 100 caracteres o menos.
+        //a. El nombre debe ser requerido y tener 100 caracteres o menos.
         if (!datos.nombre || datos.nombre.trim().length === 0 || datos.nombre.length > 100) {
             errors.push("Nombre vacío o excede los 100 caracteres.");
         }
-         // b. La marca debe ser requerida y seleccionarse de una lista de opciones.
+        // b. La marca debe ser requerida y seleccionarse de una lista de opciones.
         if (!datos.marca) {
             errors.push("No has proporcionado ninguna marca.");
         }
-         //c. El modelo debe ser requerido, texto alfanumérico y tener 25 caracteres o menos.
+        //c. El modelo debe ser requerido, texto alfanumérico y tener 25 caracteres o menos.
         if (!datos.modelo || !/^[a-zA-Z0-9\s]*$/.test(datos.modelo) || datos.modelo.length > 25) {
             errors.push("Modelo vacío, no es texto alfanumérico o excede los 25 caracteres.");
         }
         //d. El precio debe ser requerido y debe ser mayor a 99.99
-        if (!datos.precio|| !regex.test(datos.precio) || datos.precio< 99.99) {
+        if (!datos.precio || !regex.test(datos.precio) || datos.precio < 99.99) {
             errors.push("Precio no válido, debe ser mayor a 99.99");
         }
         //e. Los detalles deben ser opcionales y, de usarse, deben tener 250 caracteres o menos.
