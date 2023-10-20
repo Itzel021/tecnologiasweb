@@ -19,7 +19,7 @@ function init() {
 $(document).ready(function () {
     $('#product-result').hide();//Ocultar el product-result
     listarProductos();//Cargar todos los productos existentes
-
+    let edit = false; 
     //Funcion para listar los productos existentes
     function listarProductos() {
         $.ajax({
@@ -32,7 +32,7 @@ $(document).ready(function () {
                     template += `
                 <tr productId="${producto.id}">
                     <td>${producto.id}</td>
-                    <td>${producto.nombre}</td>
+                    <td><a href="#" class="product-item">${producto.nombre}</a></td>
                     <td>
                     <li>Precio: $${producto.precio}</li>
                     <li>Marca: ${producto.marca}</li>
@@ -78,7 +78,7 @@ $(document).ready(function () {
                         template_table += `
                             <tr productId="${producto.id}">
                                 <td>${producto.id}</td>
-                                <td>${producto.nombre}</td>
+                                <td><a href="#" class="product-item">${producto.nombre}</a></td>
                                 <td>
                                     <li>Precio: $${producto.precio}</li>
                                     <li>Marca: ${producto.marca}</li>
@@ -100,11 +100,12 @@ $(document).ready(function () {
 
     //Funcion para agregar productos
     $('#product-form').submit(function (e) {
-        e.preventDefault();
+       // e.preventDefault();
         let description = $('#description').val();
         let datos = JSON.parse(description);//convertirla en un objeto JavaScript.
         datos.nombre = $('#name').val();
-
+        datos.id = $('#productId').val();
+        
         const postDatos = {
             nombre: datos.nombre,
             precio: datos.precio,
@@ -113,25 +114,33 @@ $(document).ready(function () {
             marca: datos.marca,
             detalles: datos.detalles,
             imagen: datos.imagen,
+            id: datos.id
         };
         let errors = validateForm(datos);
+        console.log(postDatos);
         if (errors.length > 0) {
             displayErrors(errors);
         } else {
             // Ocultar los errores antes de la solicitud
             $('#mensaje').empty(); // Eliminar los mensajes de error
+            console.log(postDatos);
+            let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
             productoJsonString = JSON.stringify(postDatos, null, 2);
-            $.post('./backend/product-add.php', productoJsonString, function (response) {
+            console.log(productoJsonString);
+            $.post(url, productoJsonString, function (response) {
                 console.log(response);
                 let respons = JSON.parse(response);
                 let template_bar = `
                                 <li>status: ${respons.status}</li>
                                 <li>message: ${respons.message}</li>
                             `;
+                let mensaje = respons.message;
+                alert(mensaje);
                 $('#container').html(template_bar);
                 $('#product-result').show();
                 listarProductos();
             });
+            e.preventDefault();
         }
 
 
@@ -151,7 +160,31 @@ $(document).ready(function () {
             });
         }
     });
+    //Funcion para editar un producto
+    $(document).on('click','.product-item', function(){
+        let element = $(this)[0].parentElement.parentElement;
+        let id = $(element).attr('productId');
+        console.log(id);
+        $.post('backend/product-single.php', { id }, function (response) {
+            const producto = JSON.parse(response);
+            console.log(response);
+            $('#name').val(producto.nombre);
+            $('#productId').val(producto.id);
 
+            var atributosobj = {
+                "precio": producto.precio,
+                "unidades": producto.unidades,
+                "modelo": producto.modelo,
+                "marca": producto.marca,
+                "detalles": producto.detalles,
+                "imagen": producto.imagen
+            };
+
+            var objstring = JSON.stringify(atributosobj, null, 2);
+            $('#description').val(objstring);
+            edit = true;
+        })
+    });
     //Funcion para validar las entradas del formulario
     function validateForm(datos) {
         const errors = [];
