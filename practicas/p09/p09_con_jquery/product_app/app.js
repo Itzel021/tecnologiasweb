@@ -47,7 +47,7 @@ $(document).ready(function () {
             }
         });
     }
-    
+
     //Funcion para buscar productos
     $('#search').keyup(function (e) {
         if ($('#search').val()) {
@@ -91,4 +91,85 @@ $(document).ready(function () {
             });
         }
     });
+
+    //Funcion para agregar productos
+    $('#product-form').submit(function (e) {
+        e.preventDefault();
+        let description = $('#description').val();
+        let datos = JSON.parse(description);//convertirla en un objeto JavaScript.
+        datos.nombre = $('#name').val();
+        
+        const postDatos = {
+            nombre: datos.nombre, 
+            precio: datos.precio, 
+            unidades: datos.unidades, 
+            modelo: datos.modelo,
+            marca: datos.marca,
+            detalles: datos.detalles,
+            imagen: datos.imagen,
+        };
+        let errors = validateForm(datos);
+        if (errors.length > 0) {
+            displayErrors(errors);
+        } else {
+            // Ocultar los errores antes de la solicitud
+            $('#mensaje').empty(); // Eliminar los mensajes de error
+            productoJsonString = JSON.stringify(postDatos, null, 2);
+            $.post('./backend/product-add.php', productoJsonString, function (response) {
+                console.log(response);
+                let respons = JSON.parse(response);
+                let template_bar = `
+                                <li>status: ${respons.status}</li>
+                                <li>message: ${respons.message}</li>
+                            `;
+                   $('#container').html(template_bar);
+                   $('#product-result').show();
+                   listarProductos();
+            });
+        }
+
+
+    });
+
+    //Funcion para validar las entradas del formulario
+    function validateForm(datos) {
+        const errors = [];
+        const regex = /^[0-9]+(\.[0-9]+)?$/;
+
+         //a. El nombre debe ser requerido y tener 100 caracteres o menos.
+        if (!datos.nombre || datos.nombre.trim().length === 0 || datos.nombre.length > 100) {
+            errors.push("Nombre vacío o excede los 100 caracteres.");
+        }
+         // b. La marca debe ser requerida y seleccionarse de una lista de opciones.
+        if (!datos.marca) {
+            errors.push("No has proporcionado ninguna marca.");
+        }
+         //c. El modelo debe ser requerido, texto alfanumérico y tener 25 caracteres o menos.
+        if (!datos.modelo || !/^[a-zA-Z0-9\s]*$/.test(datos.modelo) || datos.modelo.length > 25) {
+            errors.push("Modelo vacío, no es texto alfanumérico o excede los 25 caracteres.");
+        }
+        //d. El precio debe ser requerido y debe ser mayor a 99.99
+        if (!datos.precio|| !regex.test(datos.precio) || datos.precio< 99.99) {
+            errors.push("Precio no válido, debe ser mayor a 99.99");
+        }
+        //e. Los detalles deben ser opcionales y, de usarse, deben tener 250 caracteres o menos.
+        if (datos.detalles.length > 250) {
+            errors.push("Los detalles exceden los 250 caracteres.");
+        }
+        //f. Las unidades deben ser requeridas y el número registrado debe ser mayor o igual a 0.
+        if (!datos.unidades || parseInt(datos.unidades) < 0 || !Number.isInteger(parseInt(datos.unidades))) {
+            errors.push("Unidades no válidas.");
+        }
+        /*g. La ruta de la imagen debe ser opcional, pero en caso de no registrarse se debe usar la
+        ruta de una imagen por defecto (ver ejemplo):*/
+        if (!datos.imagen) {
+            errors.imagen.value = "img/imagen.png";
+        }
+        return errors;
+    }
+
+    //Funcion para mostrar los errores del formulario
+    function displayErrors(errors) {
+        $('#mensaje').html("<b>Errores en el formulario:</b><br>" + errors.join("<br>")).show();
+    }
 });
