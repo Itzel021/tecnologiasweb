@@ -234,5 +234,52 @@ $(document).ready(function () {
             errores = false;
         })
     });
-    
+//Funcion para validación al teclear el nombre de producto
+$('#name').keyup(function () {
+    if ($('#name').val()) {
+        let search = $('#name').val();
+        $.ajax({
+            url: './backend/product-search-name.php?search=' + $('#name').val(),
+            data: { search },
+            type: 'GET',
+            success: function (response) {
+                if (!response.error) {
+                    // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+                    const productos = JSON.parse(response);
+
+                    // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
+                    if (Object.keys(productos).length > 0) {
+                        let template_bar =
+                            `
+                            <li style="list-style: none;">PRODUCTOS CON NOMBRES SIMILARES</li>
+                            <li style="list-style: none;"></li>
+                        `;
+
+                        productos.forEach(producto => {
+                            template_bar += `
+                                <li>${producto.nombre}</il>
+                            `;
+                        });
+                        $('#product-result').show();
+                        $('#container').html(template_bar);
+                    } else {
+                        // SE CREA UNA PLANTILLA PARA CREAR LAS FILAS A INSERTAR EN EL DOCUMENTO HTML
+                        let template_bar =
+                            `
+                            <li style="list-style: none;">PRODUCTOS CON NOMBRES SIMILARES</li>
+                            <li style="list-style: none;"></li>
+                            <li >NINGUNO</li>
+                        `;
+                       
+                        $('#product-result').show();
+                        $('#container').html(template_bar);
+                    }
+                }
+            }
+        });
+    }
+    else {
+        $('#product-result').hide();
+    }
+    });
 });
