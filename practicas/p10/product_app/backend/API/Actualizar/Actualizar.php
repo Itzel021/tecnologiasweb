@@ -1,7 +1,7 @@
 <?php
-     namespace API\ACTUALIZAR;
+     namespace API\Actualizar;
      require_once __DIR__ . '/../DataBase/DataBase.php';
-     use API\DATABASE\DataBase as DataBase;
+     use API\Database\DataBase as DataBase;
  
      class Actualizar extends DataBase{
         //FUNCION PARA EDITAR PRODUCTO

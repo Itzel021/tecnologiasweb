@@ -1,7 +1,7 @@
 <?php
-    namespace API\LEER;
+    namespace API\Leer;
     require_once __DIR__ . '/../DataBase/DataBase.php';
-    use API\DATABASE\DataBase as DataBase;
+    use API\Database\DataBase as DataBase;
 
     class Leer extends DataBase{
         //FUNCION PARA LISTAR LOS PRODUCTOS

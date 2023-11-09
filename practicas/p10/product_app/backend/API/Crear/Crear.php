@@ -1,7 +1,7 @@
 <?php
-    namespace API\CREAR;
+    namespace API\Crear;
     require_once __DIR__ . '/../DataBase/DataBase.php';
-    use API\DATABASE\DataBase as DataBase;
+    use API\Database\DataBase as DataBase;
 
     class Crear extends DataBase{
         //FUNCION PARA AGREGAR PRODUCTOS

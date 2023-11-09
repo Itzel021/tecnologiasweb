@@ -1,7 +1,7 @@
 <?php
-    namespace API\ELIMINAR;
+    namespace API\Eliminar;
     require_once __DIR__ . '/../DataBase/DataBase.php';
-    use API\DATABASE\DataBase as DataBase;
+    use API\Database\DataBase as DataBase;
 
     class Eliminar extends DataBase{
     //FUNCION PARA ELIMINAR PRODUCTO

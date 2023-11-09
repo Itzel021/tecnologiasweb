@@ -1,6 +1,6 @@
 <?php
-     require_once __DIR__ . '/API/Eliminar/Eliminar.php';
-     use API\ELIMINAR\Eliminar as Eliminar;
+     use API\Eliminar\Eliminar as Eliminar;
+     require_once __DIR__ . '/API/start.php';
 
     $producto = new Eliminar('marketzone');//CREA UNA INSTANCIA DE LA CLASE
     $producto->delete($_POST['id']);

@@ -1,5 +1,5 @@
 <?php 
-namespace API\DATABASE;
+namespace API\DataBase;
 abstract class DataBase {
     protected $conexion, $host, $username, $pass, $database;
 
