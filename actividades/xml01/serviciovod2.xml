@@ -1,0 +1,39 @@
+<CatalogoVOD>
+    <cuenta>
+        <correo correo = "alguien_21@gmail.com"/>
+        <perfiles>
+            <perfil usuario = "Itzel Martinez Carrera" idioma = "Español"/>
+            <perfil usuario = "Ricardo Maceda Morales" idioma="Inglés"/>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero nombre = "Terror">
+                <titulo nombre = "Destino final 1" duracion="2:05:33"/>
+                <titulo nombre = "Destino final 2" duracion = "1:05:33"/>
+                <titulo nombre = "Destino final 3" duracion ="2:50:33"/>
+                <titulo nombre = "Destino final 4" duracion ="2:05:33"/>
+            </genero>
+            <genero nombre = "Romance">
+                <titulo nombre = "Orgullo y prejuicio" duracion ="1:45:05"/>
+                <titulo nombre = "Amor a media noche" duracion ="2:45:05"/>
+                <titulo nombre = "Bajo la misma estrella" duracion ="1:05:15"/>
+                <titulo nombre = "El diario de Noa" duracion ="1:45:05"/>
+            </genero>
+        </peliculas>
+        <programas>
+            <genero nombre = "Drama">
+                <titulo nombre = "Breaking Bad" duracion ="1:07:22"/>
+                <titulo nombre = "Brooklyn Nine-Nine" duracion ="1:07:22"/>
+                <titulo nombre = "Parks and Recreation" duracion ="1:07:22"/>
+                <titulo nombre = "The Marvelous Mrs. Maisel" duracion ="1:07:22"/>
+            </genero>
+            <genero nombre = "Comedia">
+                <titulo nombre = "The Office" duracion ="1:35:06"/>
+                <titulo nombre = "Stranger Things" duracion ="2:05:06"/>
+                <titulo nombre = "The Handmaid's Tale" duracion ="1:08:06"/>
+                <titulo nombre = "Westworld" duracion ="2:35:06"/>
+            </genero>
+        </programas>
+    </contenido>
+</CatalogoVOD>
