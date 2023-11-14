@@ -1,6 +1,5 @@
 <CatalogoVOD>
-    <cuenta>
-        <correo correo = "alguien_21@gmail.com"/>
+    <cuenta correo = "alguien_21@gmail.com">
         <perfiles>
             <perfil usuario = "Itzel Martinez Carrera" idioma = "Español"/>
             <perfil usuario = "Ricardo Maceda Morales" idioma="Inglés"/>
