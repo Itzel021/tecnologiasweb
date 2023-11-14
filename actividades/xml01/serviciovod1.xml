@@ -1,0 +1,97 @@
+<CatalogoVOD>
+    <cuenta>
+        <correo></correo>
+        <perfiles>
+            <perfil>
+                <usuario>Itzel Martinez Carrera</usuario>
+                <idioma>Español</idioma>
+            </perfil>
+            <perfil>
+                <usuario>Ricardo Maceda Morales</usuario>
+                <idioma>Inglés</idioma>
+            </perfil>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero>
+                <nombre>Terror</nombre>
+                <titulo>
+                    <nombre>Destino final 1</nombre>
+                    <duracion>2:05:33</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Destino final 2</nombre>
+                    <duracion>1:05:33</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Destino final 3</nombre>
+                    <duracion>2:50:33</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Destino final 4</nombre>
+                    <duracion>2:05:33</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Romance</nombre>
+                <titulo>
+                    <nombre>Orgullo y prejuicio</nombre>
+                    <duracion>1:45:05</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Amor a media noche</nombre>
+                    <duracion>2:45:05</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Bajo la misma estrella</nombre>
+                    <duracion>1:05:15</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>El diario de Noa</nombre>
+                    <duracion>1:45:05</duracion>
+                </titulo>
+            </genero>
+        </peliculas>
+        <programas>
+            <genero>
+                <nombre>Drama</nombre>
+                <titulo>
+                    <nombre>Breaking Bad</nombre>
+                    <duracion>1:07:22</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Brooklyn Nine-Nine</nombre>
+                    <duracion>1:07:22</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Parks and Recreation</nombre>
+                    <duracion>1:07:22</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>The Marvelous Mrs. Maisel</nombre>
+                    <duracion>1:07:22</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Comedia</nombre>
+                <titulo>
+                    <nombre>The Office</nombre>
+                    <duracion>1:35:06</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Stranger Things</nombre>
+                    <duracion>2:05:06</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>The Handmaid's Tale</nombre>
+                    <duracion>1:08:06</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Westworld</nombre>
+                    <duracion>2:35:06</duracion>
+                </titulo>
+            </genero>
+        </programas>
+    </contenido>
+</CatalogoVOD>
