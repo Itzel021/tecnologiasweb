@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cinefanatico SYSTEM "cinefanatico.dtd">
+<cinefanatico>
+    <tarjeta noserie="123" visitas="15" puntos="250">
+        <nombre>Itzel Daniela Martinez Carrera</nombre>
+        <correo>itz_21@cinefanatico.com</correo>
+        <telefono tipo="movil">2712295252</telefono>
+    </tarjeta>
+    <tarjeta noserie="456" visitas="28" puntos="500">
+        <nombre>Ricardo Maceda Morales</nombre>
+        <correo>rich_07@cinefanatico.com</correo>
+        <telefono tipo="movil">7551203131</telefono>
+        <telefono tipo="casa">27110050554</telefono>
+    </tarjeta>
+</cinefanatico>
