@@ -6,13 +6,4 @@
         <correo>john011@gmail.com</correo>
         <telefono tipo="movil">000-123-4567</telefono>
     </Cuenta>
-    <Cuenta id="003" plan="Familiar" fechaIni="2022-03-01" fechaFin="2023-03-01">
-        <nombre>Brenda</nombre>
-        <correo>brenda07@gmail.com</correo>
-    </Cuenta>
-    <Cuenta id="004" plan="Familiar" fechaIni="2022-03-01" fechaFin="2023-03-01">
-        <nombre>Dani</nombre>
-        <correo>dani_21@gmail.com</correo>
-        <telefono tipo="casa">237-234-56-90</telefono>
-    </Cuenta>
 </Spotify>
