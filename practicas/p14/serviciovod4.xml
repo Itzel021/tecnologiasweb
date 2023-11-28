@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE CatalogoVOD SYSTEM "serviciovod_ep.dtd">
+<?xml-stylesheet href="catalogovod.xsl" type="text/xsl"?>
 <CatalogoVOD>
     <cuenta correo="itzel.martinez@alumno.buap.mx">
         <perfiles>
