@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CatalogoVOD SYSTEM "serviciovod_ep.dtd">
+<CatalogoVOD>
+    <cuenta correo="itzel.martinez@alumno.buap.mx">
+        <perfiles>
+            <perfil usuario="Itzel Daniela Martinez Carrera" idioma="Español"/>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas region="MEX">
+            <genero nombre="Accion">
+                <titulo duracion="01:40:00">El Francotirador</titulo>
+                <titulo duracion="02:06:00">Terminator: destino oculto</titulo>
+            </genero>
+            <genero nombre="Drama">
+                <titulo duracion="02:04:00">Expiación, deseo y pecado.</titulo>
+                <titulo duracion="01:42:00">El diario Noah</titulo>
+            </genero>
+        </peliculas>
+        <series region="MEX">
+            <genero nombre="Juvenil">
+                <titulo duracion="00:40:00">El juego del calamar</titulo>
+                <titulo duracion="00:40:00">La casa de papel</titulo>
+            </genero>
+            <genero nombre="Drama Criminal">
+                <titulo duracion="00:45:00">Amor y muerte</titulo>
+                <titulo duracion="00:50:00">Dahmer</titulo>
+            </genero>
+        </series>
+    </contenido>
+</CatalogoVOD>
