@@ -17,12 +17,6 @@
                     font-size: 90%;
                     }
                     
-                    .container {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    backgroud-color :  #ca0621;
-                    }
                     
                     h1 {
                     color: #005825;
@@ -35,18 +29,8 @@
                     color: #4A0048;
                     text-align: center; 
                     }
-                    
-                    .content {
-                    margin-top: 20px;
-                    }
-                 
-                    table, th, td {
-                    border: 1px solid #000000; 
-                    }
-                    th, td {
-                    padding: 8px;
-                    text-align: center; 
-                    }
+                   
+   
                 </style>
             </head>
             <body>
